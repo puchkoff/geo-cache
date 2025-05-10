@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: geo-cache
+build:
+  artifacts:
+  - image: geo-cache
+    docker:
+      dockerfile: Dockerfile
+  local:
+    push: false  # Do not push the image to a remote registry
+    useDockerCLI: true  # Use Docker CLI instead of the Go Docker SDK (optional, more compatible)
+deploy:
+  kubectl:
+    manifests:
+      - k8s/*.yaml
